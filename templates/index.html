@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VPS Management Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="logo">
+            <h2>VPS Manager</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" class="active">Dashboard</a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </div>
+
+
+    <div class="main-content">
+        <header>
+            <h1>VPS Dashboard</h1>
+            <p class="subheader">Manage your virtual machines easily.</p>
+        </header>
+
+
+        <section class="vms">
+            <div class="vm-card">
+                <h3>VM #1</h3>
+                <p class="vm-status"><strong>Status:</strong> <span class="running">Running</span></p>
+                <p><strong>CPU:</strong> 2 Cores</p>
+                <p><strong>RAM:</strong> 1.5 GB</p>
+                <p><strong>Local IP:</strong> 192.168.0.101</p>
+                <p><strong>Disk Usage:</strong> 4.5 GB</p>
+                <button class="btn start-btn">Stop</button>
+                <button class="btn details-btn">Details</button>
+            </div>
+
+        </section>
+    </div>
+
+</body>
+</html>
