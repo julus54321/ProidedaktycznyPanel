@@ -20,26 +20,35 @@
         </ul>
     </div>
 
-
     <div class="main-content">
         <header>
             <h1>VPS Dashboard</h1>
-            <p class="subheader">Manage your virtual machines easily.</p>
+            <p class="subheader">yes</p>
         </header>
 
-
         <section class="vms">
+            {% for vm in vms %}
             <div class="vm-card">
-                <h3>VM #1</h3>
-                <p class="vm-status"><strong>Status:</strong> <span class="running">Running</span></p>
-                <p><strong>CPU:</strong> 2 Cores</p>
-                <p><strong>RAM:</strong> 1.5 GB</p>
-                <p><strong>Local IP:</strong> 192.168.0.101</p>
-                <p><strong>Disk Usage:</strong> 4.5 GB</p>
+                <h3>{{ vm.name }}</h3>
+                <p class="vm-status"><strong>Status:</strong> <span class="{{ 'running' if vm.state == 'Running' else 'stopped' }}">{{ vm.state }}</span></p>
+                <p><strong>vCPUs:</strong> {{ vm.vcpus }}</p>
+                <p><strong>RAM:</strong> {{ vm.memory_mb }} MB</p>
+                <p><strong>OS:</strong> {{ vm.os }}</p>
+                <p><strong>Autostart:</strong> {{ vm.autostart }}</p>
+                <p><strong>Disks:</strong> 
+                    {% for disk in vm.disks %}
+                        <br> - {{ disk.source }} ({{ disk.size_mb }} MB)
+                    {% endfor %}
+                </p>
+                <p><strong>Network Interfaces:</strong>
+                    {% for network in vm.network_interfaces %}
+                        <br> - MAC: {{ network.mac }}, Network Source: {{ network.network_source }}, IP: {{ network.ip }}
+                    {% endfor %}
+                </p>
                 <button class="btn start-btn">Stop</button>
                 <button class="btn details-btn">Details</button>
             </div>
-
+            {% endfor %}
         </section>
     </div>
 
